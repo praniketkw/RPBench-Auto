@@ -100,6 +100,7 @@ def eval_models_pairwise(model_1, model_2):
                 "role": "system",
                 "content": TEMPLATE.substitute(background=background, **npc_profile),
             },
+            {"role": "user", "content": "[Begin the roleplay scenario]"},
             {"role": "assistant", "content": greeting},
         ]
 
