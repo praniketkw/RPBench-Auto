@@ -29,6 +29,12 @@ $definition_text
 
 ## Long Definition
 $long_definition_text
+
+# Scenario Context:
+The conversation begins with the following situation:
+$greeting
+
+You should respond naturally to the user's messages while staying in character.
 """
 )
 
@@ -98,9 +104,8 @@ def eval_models_pairwise(model_1, model_2):
         candidate_messages = [
             {
                 "role": "system",
-                "content": TEMPLATE.substitute(background=background, **npc_profile),
+                "content": TEMPLATE.substitute(background=background, greeting=greeting, **npc_profile),
             },
-            {"role": "assistant", "content": greeting},
         ]
 
         judger_messages = [

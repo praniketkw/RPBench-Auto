@@ -30,6 +30,10 @@ $progression
 # NPC Status:
 $npc_status
 
+# Scenario Context:
+The scene begins with the following situation:
+$greeting
+
 You are an AI NPC for a role-play game. Based on the previous information, you will play a NPC character in the scene.
 Reply in this JSON format: {"npc_speaks": "YOUR RESPONSE", "is_chat_finished": true or false}. If the scene is finished and ready to move on, set "is_chat_finished" to true. Otherwise, set it to false.
 """
@@ -101,9 +105,8 @@ def eval_models_pairwise(model_1, model_2):
         candidate_messages = [
             {
                 "role": "system",
-                "content": TEMPLATE.substitute(d),
+                "content": TEMPLATE.substitute(greeting=greeting, **d),
             },
-            {"role": "assistant", "content": greeting},
         ]
 
         judger_messages = [
